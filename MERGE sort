@@ -1,0 +1,48 @@
+import java.util.*;
+class MergeSort{
+	public static void mergeSort(int a[],int low,int high)
+	{
+		if(low<high)
+		 	{
+		 		int mid=(low+high)/2;
+		 		mergeSort(a,low,mid);
+		 		mergeSort(a,mid+1,high);
+		 		merge(low,high,mid,a);
+		 		}
+		 	}
+	public static void merge(int low,int high,int mid, int a[]){
+		int i=low;
+		int j=mid+1;
+		int k=low;
+		int b[]=new  int[5];
+		while(i<=mid && j<=high){
+			if(a[i]<=a[j])
+				b[k++]=a[i++];
+			else
+				b[k++]=a[j++];
+				
+			while(i<=mid)
+			        b[k++]=a[i++];
+			while(j<=high)
+				b[k++]=a[j++];
+			}
+		for(int h=low;h<=high;h++)
+		 a[h]=b[h];
+		 }
+	
+	public static void main(String[]args){
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter no. of elements:");
+		int n=sc.nextInt();
+		System.out.println("Enter the elements:");
+		int a[]=new int[n];
+		int b[]=new int[n];
+		for(int i=0;i<n;i++)
+			a[i]=sc.nextInt();
+		mergeSort(a,0,a.length-1);
+		System.out.println("Sorted elements:");
+		for(int num:a)
+			System.out.println(num+" ");
+	}
+		
+}
